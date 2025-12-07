@@ -1,0 +1,107 @@
+s* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: #2e3b4e; color: #17bac5; }
+.page { max-width: 1100px; margin: 32px auto; padding: 0 16px; }
+
+/* Title */
+.title { text-align: center; margin-bottom: 18px; font-size: 1.6rem; font-weight: 600; color:#a3b3cb; }
+
+/* Filters */
+.filters { display: flex; gap: 8px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap; }
+.filter-btn {
+  background: transparent; border: 1px solid rgba(25, 91, 197, 0.08); padding: 8px 12px; border-radius: 10px; cursor: pointer; transition: transform .18s ease, background .18s ease;
+}
+.filter-btn:hover { transform: translateY(-3px); }
+.filter-btn.active { background: #a0adc2; color: #259db5; border-color: #abb7ca; }
+
+/* Gallery grid */
+.gallery {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1000px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .gallery { grid-template-columns: 1fr; } }
+
+/* Each item */
+.item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #b6a0a0;
+  box-shadow: 0 6px 22px rgba(10, 60, 120, 0.06);
+  cursor: pointer;
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+}
+.item img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.2,.9,.3,1), filter .35s;
+  transform-origin: center center;
+  will-change: transform;
+}
+/* Responsive image height */
+@media (max-width: 700px) { .item img { height: 180px; } }
+@media (max-width: 420px) { .item img { height: 220px; } }
+
+/* Hover effects */
+.item:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(111, 164, 229, 0.12); }
+.item:hover img { transform: scale(1.06) rotate(.3deg); filter: brightness(.96) saturate(1.05); }
+
+/* Caption overlay */
+.item figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 12px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(196, 166, 166, 0.45) 100%);
+  color: #e6ebe8;
+  font-size: 0.95rem;
+  transform: translateY(60%);
+  opacity: 0;
+  transition: transform .28s ease, opacity .28s ease;
+}
+.item:hover figcaption { transform: translateY(0%); opacity: 1; }
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(175, 185, 214, 0.6);
+  z-index: 9999;
+  padding: 24px;
+}
+.lightbox[aria-hidden="false"] { display: flex; }
+.lb-content { max-width: 92vw; max-height: 82vh; text-align: center; }
+.lb-content img {
+  max-width: 90vw;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(2,6,23,0.6);
+  transition: transform .25s ease, opacity .2s;
+}
+.lb-content p { color: #fff; margin-top: 10px; font-size: 1rem; }
+
+/* Lightbox controls */
+.lb-close, .lb-prev, .lb-next {
+  position: absolute; background: rgba(255,255,255,0.06); border: none; color: #fff; backdrop-filter: blur(4px); padding: 10px 12px; font-size: 18px; border-radius: 10px; cursor: pointer;
+  transition: transform .12s, background .12s;
+}
+.lb-close { top: 18px; right: 18px; }
+.lb-prev { left: 18px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 18px; top: 50%; transform: translateY(-50%); }
+.lb-close:hover, .lb-prev:hover, .lb-next:hover { transform: scale(1.05); background: rgba(255,255,255,0.12); }
+
+/* Hidden state for filtered items */
+.item.hidden { opacity: 0; transform: scale(.98); pointer-events: none; transition: opacity .28s, transform .28s; height: 0; overflow: hidden; padding: 0; margin: 0; }
+
+/* Small accessibility tweaks */
+.filter-btn:focus, .lb-close:focus, .lb-prev:focus, .lb-next:focus { outline: 3px solid rgba(14,165,233,0.25); outline-offset: 3px; }

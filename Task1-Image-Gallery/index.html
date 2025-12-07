@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <h1 class="title">Image Gallery</h1>
+
+    <!-- Filter OR Categories -->
+    <nav class="filters" aria-label="Image categories">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Travel">Travel</button>
+      <button class="filter-btn" data-filter="Favorite">Favorites</button>
+      <button class="filter-btn" data-filter="Group">Group</button>
+    </nav>
+
+    <!-- THE Gallery grid for image gallery -->
+    <section class="gallery" id="gallery" aria-label="Image gallery">
+      <!-- Each when .item has data-category for filtering. Replace src with your images or local paths. -->
+      <!-- index.html -->
+<figure class="item" data-category="Travel">
+  <img src="Photos/Solo.png"width="600" height="800" alt="Solo — Travel" loading="lazy" />
+  <figcaption>Solo — Travel</figcaption>
+</figure>
+
+      <figure class="item" data-category="Favorite">
+        <img src="Photos/food.png"width="600" height="800" alt="Hillview+Food" loading="lazy" />
+        <figcaption>Hillview+Food — Favorite</figcaption>
+      </figure>
+
+      <figure class="item" data-category="Group">
+        <img src="Photos/boy.png"width="600" height="800" alt="Vibe" loading="lazy" />
+        <figcaption>Vibe — Group</figcaption>
+      </figure>
+
+      <figure class="item" data-category="Travel">
+        <img src="Photos/forest.png"width="600" height="800" alt="Forest" loading="lazy" />
+        <figcaption>Forest— Travel</figcaption>
+      </figure>
+
+      <figure class="item" data-category="Favorite">
+        <img src="Photos/duo.png" width="600" height="800" alt="The Pause" loading="lazy" />
+        <figcaption>The Pause — Favorite</figcaption>
+      </figure>
+
+      <figure class="item" data-category="Group">
+        <img src="Photos/camping.png" width="600" height="800" alt="Camping" loading="lazy" />
+        <figcaption>Camping — Group</figcaption>
+      </figure>
+
+      <figure class="item" data-category="Travel">
+        <img src="Photos/dog.png" width="600" height="800" alt="Jack's-click" loading="lazy" />
+        <figcaption>Jack's-click — Travel</figcaption>
+      </figure>
+
+      <figure class="item" data-category="Favorite">
+        <img src="Photos/sunset.png" width="600" height="800" alt="Evening-Time" loading="lazy" />
+        <figcaption>Evening-Time — Favorite</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lb-close" id="lbClose" aria-label="Close (Esc)">✕</button>
+    <button class="lb-prev" id="lbPrev" aria-label="Previous (Left arrow)">◀</button>
+    <div class="lb-content">
+      <img id="lbImage" src="" alt="" />
+      <p id="lbCaption"></p>
+    </div>
+    <button class="lb-next" id="lbNext" aria-label="Next (Right arrow)">▶</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

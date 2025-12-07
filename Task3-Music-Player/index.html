@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="player-wrap" aria-label="Music player">
+    <div class="player-card">
+      <div class="now-playing">
+        <div class="cover">
+          <img id="cover" src="media/cover-placeholder.jpg" alt="Album cover" />
+        </div>
+
+        <div class="meta">
+          <div id="title" class="title">Title</div>
+          <div id="artist" class="artist">Artist</div>
+
+          <div class="progress-row">
+            <span id="currentTime" class="time">0:00</span>
+            <div id="progressContainer" class="progress-container" aria-label="Song progress" role="progressbar" tabindex="0">
+              <div id="progress" class="progress"></div>
+            </div>
+            <span id="duration" class="time">0:00</span>
+          </div>
+
+          <div class="controls">
+            <button id="prev" title="Previous">⏮</button>
+            <button id="play" title="Play/Pause">▶️</button>
+            <button id="next" title="Next">⏭</button>
+
+            <div class="volume-group">
+              <label for="volume">🔊</label>
+              <input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" />
+            </div>
+
+            <label class="autoplay">
+              <input id="autoplay" type="checkbox" />
+              Autoplay
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <section class="playlist-section" aria-label="Playlist">
+        <h3>Playlist</h3>
+        <ul id="playlist" class="playlist"></ul>
+      </section>
+    </div>
+  </main>
+
+  <!-- hidden audio element controlled by JS -->
+  <audio id="audio" preload="metadata"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
