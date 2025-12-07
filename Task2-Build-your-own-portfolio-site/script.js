@@ -1,6 +1,3 @@
-// Basic progressive reveal on scroll and small UI behaviors.
-// Place this in scripts.js and include it at the end of body.
-
 (function () {
   'use strict';
 

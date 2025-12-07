@@ -9,11 +9,11 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%; margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#071029 0%, #071827 60%); color:#e6eef6}
+html,body{height:100%; margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#630d52 0%, #24082c 60%); color:#e6eef6}
 a{color:var(--accent)}
 
 .player-wrap{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px}
-.player-card{width:100%; max-width:920px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--radius); padding:20px; box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+.player-card{width:100%; max-width:920px; background:linear-gradient(180deg, rgba(86, 17, 85, 0.02), rgba(255,255,255,0.01)); border-radius:var(--radius); padding:20px; box-shadow:0 12px 40px rgba(214, 209, 209, 0.6)}
 .now-playing{display:flex; gap:18px; align-items:flex-start}
 .cover{width:160px; height:160px; background:#061226; border-radius:10px; overflow:hidden; flex-shrink:0}
 .cover img{width:100%; height:100%; object-fit:cover; display:block}

@@ -10,25 +10,26 @@
 
   // ---------- Playlist: edit paths to match your files ----------
   const playlist = [
-    {
-      title: 'Sample Track 1',
-      artist: 'Artist One',
-      src: 'media/sample1.mp3',
-      cover: 'media/cover1.jpg'
-    },
-    {
-      title: 'Sample Track 2',
-      artist: 'Artist Two',
-      src: 'media/sample2.mp3',
-      cover: 'media/cover2.jpg'
-    },
-    {
-      title: 'Sample Track 3',
-      artist: 'Artist Three',
-      src: 'media/sample3.mp3',
-      cover: 'media/cover3.jpg'
-    }
-  ];
+  { 
+    title: 'HIGH ON YOU', 
+    artist: 'Jind Universe', 
+    src: 'music/HIGH_ON_YOU.mp3', 
+    cover: 'img/HOY.png' 
+  },
+  { 
+    title: 'Pal Pal',  
+        artist: 'Afusic,Talwiinder,AliSoomroMusic', 
+        src: 'music/PAL_PAL.mp3',
+         cover: 'img/Pal.png'
+         },
+  { 
+    title: 'Barbaad',   
+       artist: 'Jubin Nautiyal,The Rish', 
+       src: 'music/Barbaad.mp3',
+         cover: 'img/barbaad.png'
+         }
+];
+
   // -------------------------------------------------------------
 
   // Elements
@@ -74,24 +75,36 @@
 
   // Load a song by index; if playNow true -> start playing
   function loadSong(index, playNow = false) {
-    if (index < 0) index = playlist.length - 1;
-    if (index >= playlist.length) index = 0;
-    currentIndex = index;
-    const s = playlist[currentIndex];
-    audio.src = s.src;
-    titleEl.textContent = s.title;
-    artistEl.textContent = s.artist;
-    coverEl.src = s.cover;
-    audio.load();
-    highlightActive();
-    updateDurationAfterLoad();
+  if (index < 0) index = playlist.length - 1;
+  if (index >= playlist.length) index = 0;
+  currentIndex = index;
+  const s = playlist[currentIndex];
 
-    if (playNow) {
-      play();
-    } else {
-      pause();
-    }
-  }
+  // Use relative paths in playlist (see below). encodeURI handles spaces/()
+  audio.src = encodeURI(s.src);
+  titleEl.textContent = s.title || 'Unknown title';
+  artistEl.textContent = s.artist || 'Unknown artist';
+
+  // set cover src (single <img id="cover">)
+  coverEl.src = s.cover ? encodeURI(s.cover) : 'img/cover-placeholder.jpg';
+
+  audio.load();
+  highlightActive();
+  updateDurationAfterLoad();
+
+  audio.onerror = (ev) => {
+    console.error('Audio load error:', audio.src, ev);
+    const msg = document.getElementById('formMsg');
+    if (msg) msg.textContent = `Error loading audio for "${s.title}". Check path or file.`;
+  };
+
+  coverEl.onerror = () => {
+    console.warn('Cover failed to load:', coverEl.src);
+    coverEl.src = 'img/cover-placeholder.jpg';
+  };
+
+  if (playNow) play(); else pause();
+}
 
   // Play / Pause
   function play() {
